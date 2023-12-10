@@ -4,7 +4,6 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-
 import json
 import time
 import random
@@ -16,7 +15,7 @@ languages = [
     "java",
     "C%2B%2B",
     "c%23",
-    "go",
+    "golang",
     "swift",
     "php",
     "sql",
@@ -71,10 +70,8 @@ url_base = "https://nl.indeed.com/jobs?q={}&l={}&radius=25"
 
 driver = webdriver.Chrome()
 
-# Counter to keep track of successful iterations
 successful_iterations = 0
 
-# Start loop from where you left off or 0 if starting fresh
 start_iteration = 0
 
 try:
@@ -95,7 +92,6 @@ try:
                 citiesLangData[city]["data"][language] = job_count
                 successful_iterations += 1
 
-                # Your code to write to a file here (adjust as needed)
                 with open('output.txt', 'a') as file:
                     file.write(f'Iteration {iteration}: {element_text}\n')
 

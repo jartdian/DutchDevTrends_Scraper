@@ -1,4 +1,4 @@
-citiesLangData = {
+const citiesLangData = {
     "Rotterdam": {"coordinates": [51.9225, 4.47917], "data": {}},
     "Amsterdam": {"coordinates": [52.3676, 4.9041], "data": {}},
     "Den Haag": {"coordinates": [52.0705, 4.3007], "data": {}},
@@ -13,9 +13,10 @@ citiesLangData = {
     "Almere": {"coordinates": [52.3508, 5.2647], "data": {}},
     "Apeldoorn": {"coordinates": [52.2112, 5.9699], "data": {}},
     "Arnhem": {"coordinates": [51.9851, 5.8987], "data": {}},
-    "Haarlem": {"coordinates": [52.3874, 4.9024], "data": {}},
+    "Haarlem": {"coordinates": [52.3874, 4.6424], "data": {}},
     "Enschede": {"coordinates": [52.2215, 6.8937], "data": {}},
     "Amersfoort": {"coordinates": [52.1561, 5.3878], "data": {}},
     "Leeuwarden": {"coordinates": [53.2194, 5.8054], "data": {}},
     "Sittard": {"coordinates": [51.0018, 5.8662], "data": {}},
 }
+
