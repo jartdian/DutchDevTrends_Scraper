@@ -7,6 +7,7 @@ from selenium.webdriver.support import expected_conditions as EC
 import json
 import time
 import random
+from datetime import datetime
 
 languages = [
     "javascript",
@@ -84,7 +85,9 @@ try:
 
             try:
                 element_to_capture = WebDriverWait(driver, 10).until(
-                    EC.presence_of_element_located((By.CSS_SELECTOR, ".jobsearch-JobCountAndSortPane-jobCount"))
+                    EC.presence_of_element_located(
+                        (By.CSS_SELECTOR, ".jobsearch-JobCountAndSortPane-jobCount")
+                    )
                 )
                 element_text = element_to_capture.text
                 job_count = int("".join(filter(str.isdigit, element_text)))
@@ -92,14 +95,20 @@ try:
                 citiesLangData[city]["data"][language] = job_count
                 successful_iterations += 1
 
-                with open('output.txt', 'a') as file:
-                    file.write(f'Iteration {iteration}: {element_text}\n')
+                with open("output.txt", "a") as file:
+                    file.write(f"Iteration {iteration}: {element_text}\n")
 
             except Exception as e:
                 # Log the exception and continue with the next iteration
-                print(f'Error in iteration {iteration}, language {language}, city {city}: {str(e)}')
+                print(
+                    f"Error in iteration {iteration}, language {language}, city {city}: {str(e)}"
+                )
 
 finally:
+    citiesLangData["last_update"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    with open("output.txt", "a") as file:
+        file.write(f'Last update: {citiesLangData["last_update"]}\n')
+
     driver.quit()
 
 citiesLangData_json = json.dumps(citiesLangData, indent=2)
@@ -108,4 +117,4 @@ with open(file_path, "w") as file:
     file.write(f"const citiesLangData = {citiesLangData_json};")
 
 print(f"City coordinates data has been saved to {file_path}")
-print(f'Successful iterations: {successful_iterations}')
+print(f"Successful iterations: {successful_iterations}")
